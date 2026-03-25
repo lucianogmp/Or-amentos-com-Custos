@@ -1,17 +1,63 @@
-function calcular() {
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0f19;
+  color: white;
+}
 
-  let largura = document.getElementById("largura").value / 100;
-  let altura = document.getElementById("altura").value / 100;
-  let quantidade = document.getElementById("quantidade").value;
-  let valorMetro = document.getElementById("valorMetro").value;
-  let lucro = document.getElementById("lucro").value / 100;
+header {
+  text-align: center;
+  padding: 20px;
+}
 
-  let area = largura * altura;
-  let custo = area * valorMetro;
-  let preco = custo + (custo * lucro);
-  let total = preco * quantidade;
+.logo {
+  height: 60px;
+}
 
-  document.getElementById("area").innerText = area.toFixed(2) + " m²";
-  document.getElementById("unitario").innerText = "R$ " + preco.toFixed(2);
-  document.getElementById("total").innerText = "R$ " + total.toFixed(2);
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.left, .right {
+  flex: 1;
+}
+
+.card {
+  background: #121826;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.05);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #1a2235;
+  color: white;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(45deg, #00c2ff, #0066ff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.resultado {
+  text-align: center;
+}
+
+.resultado h3 {
+  color: #00e0ff;
 }
