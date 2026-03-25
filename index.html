@@ -1,77 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>Master Print</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<!-- SOMENTE TRECHO ALTERADO (CONFIGURAÇÕES FINANCEIRAS) -->
 
-<body>
+<section class="bg-white dark:bg-[#1a1f2e] rounded-2xl border border-slate-200 dark:border-[#2a3040] p-5 space-y-4 fade-in">
+  <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+    Configurações Financeiras
+  </h3>
 
-<header>
-  <img src="logo.png">
-  <h1>Sistema de Orçamentos Master Print</h1>
-</header>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-<div class="container">
-
-  <div class="left">
-
-    <div class="card">
-      <h2>Cliente</h2>
-      <input id="cliente" placeholder="Nome">
-      <input id="telefone" placeholder="Telefone">
+    <!-- VALOR -->
+    <div class="space-y-1.5">
+      <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">
+        Valor por m²
+      </label>
+      <input type="number" id="valor"
+        class="w-full bg-slate-50 dark:bg-[#232a3a] border rounded-lg px-4 py-3 text-sm">
     </div>
 
-    <div class="card">
-      <h2>Tipo</h2>
-      <select id="tipo">
-        <option value="adesivo">Adesivo</option>
-        <option value="lona">Lona / Banner</option>
-      </select>
-    </div>
+    <!-- NOVO: TEM ARTE -->
+    <div class="space-y-1.5">
+      <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">
+        Tem arte?
+      </label>
 
-    <div class="card">
-      <h2>Medidas</h2>
-      <input id="largura" placeholder="Largura (m)">
-      <input id="altura" placeholder="Altura (m)">
-      <input id="qtd" placeholder="Quantidade">
-    </div>
+      <div class="flex gap-3">
 
-    <div class="card">
-      <h2>Configurações</h2>
-      <input id="valorMetro" placeholder="Valor m²">
-      <input id="material" placeholder="Material (R$)">
-      <input id="arte" value="20" placeholder="Arte (%)">
-      <input id="extra" placeholder="Aplicação / Acabamento (%)">
-      <input id="mao" placeholder="Mão de obra (R$)">
-    </div>
+        <label class="flex-1 cursor-pointer">
+          <input type="radio" name="arte" value="sim" class="hidden peer" checked>
+          <div class="text-center py-3 rounded-lg border border-slate-300
+                      peer-checked:bg-green-500 peer-checked:text-white">
+            Sim
+          </div>
+        </label>
 
-    <button onclick="calcular()">CALCULAR</button>
+        <label class="flex-1 cursor-pointer">
+          <input type="radio" name="arte" value="nao" class="hidden peer">
+          <div class="text-center py-3 rounded-lg border border-slate-300
+                      peer-checked:bg-red-500 peer-checked:text-white">
+            Não
+          </div>
+        </label>
 
-  </div>
-
-  <div class="right">
-
-    <div class="card resultado">
-      <h2>Total</h2>
-      <h1 id="total">R$ 0,00</h1>
-      <p id="detalhe"></p>
-    </div>
-
-    <div class="card">
-      <h2>Histórico</h2>
-      <div id="historico"></div>
+      </div>
     </div>
 
   </div>
 
-</div>
-
-<script src="app.js"></script>
-<script src="modules/adesivo.js"></script>
-<script src="modules/lona.js"></script>
-<script src="modules/storage.js"></script>
-
-</body>
-</html>
+  <button onclick="calcular()"
+    class="w-full bg-brand-600 text-white py-3 rounded-xl">
+    Calcular Orçamento
+  </button>
+</section>
