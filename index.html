@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Master Print</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <img src="logo.png" class="logo">
+  <h1>Sistema de Orçamentos</h1>
+</header>
+
+<div class="container">
+
+  <div class="left">
+
+    <div class="card">
+      <h2>Dados</h2>
+      <input type="text" id="cliente" placeholder="Nome do cliente">
+      <input type="text" id="telefone" placeholder="Telefone">
+    </div>
+
+    <div class="card">
+      <h2>Medidas</h2>
+      <input type="number" id="largura" placeholder="Largura (cm)">
+      <input type="number" id="altura" placeholder="Altura (cm)">
+      <input type="number" id="quantidade" value="1">
+    </div>
+
+    <div class="card">
+      <h2>Configuração</h2>
+      <input type="number" id="valorMetro" placeholder="Valor por m²">
+      <input type="number" id="lucro" value="20" placeholder="Lucro (%)">
+      <button onclick="calcular()">Calcular</button>
+    </div>
+
+  </div>
+
+  <div class="right">
+
+    <div class="card resultado">
+      <h2>Total</h2>
+      <h1 id="total">R$ 0,00</h1>
+
+      <p>Unitário: <span id="unitario">R$ 0,00</span></p>
+      <p>Área: <span id="area">0 m²</span></p>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
