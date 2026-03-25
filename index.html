@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Sistema Master Print</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Master Print - Sistema</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
@@ -14,38 +15,56 @@
 
 <div class="container">
 
+  <!-- ESQUERDA -->
   <div class="left">
 
     <div class="card">
-      <h2>Dados</h2>
-      <input type="text" id="cliente" placeholder="Nome do cliente">
-      <input type="text" id="telefone" placeholder="Telefone">
+      <h2>ADESIVO</h2>
+
+      <input type="number" id="a_largura" placeholder="Largura (m)">
+      <input type="number" id="a_altura" placeholder="Altura (m)">
+      <input type="number" id="a_qtd" placeholder="Quantidade">
+
+      <input type="number" id="a_valorMetro" placeholder="Preço do m²">
+      <input type="number" id="a_material" placeholder="Custo material total">
+
+      <input type="number" id="a_arte" placeholder="Acréscimo arte (%)" value="20">
+      <input type="number" id="a_aplicacao" placeholder="Aplicação (%)" value="20">
+
+      <button onclick="calcularAdesivo()">Calcular Adesivo</button>
     </div>
 
     <div class="card">
-      <h2>Medidas</h2>
-      <input type="number" id="largura" placeholder="Largura (cm)">
-      <input type="number" id="altura" placeholder="Altura (cm)">
-      <input type="number" id="quantidade" value="1">
-    </div>
+      <h2>LONA / BANNER</h2>
 
-    <div class="card">
-      <h2>Configuração</h2>
-      <input type="number" id="valorMetro" placeholder="Valor por m²">
-      <input type="number" id="lucro" value="20" placeholder="Lucro (%)">
-      <button onclick="calcular()">Calcular</button>
+      <input type="number" id="l_largura" placeholder="Largura (m)">
+      <input type="number" id="l_altura" placeholder="Altura (m)">
+      <input type="number" id="l_qtd" placeholder="Quantidade">
+
+      <input type="number" id="l_valorMetro" placeholder="Preço do m²">
+
+      <input type="number" id="l_arte" value="20" placeholder="Arte (%)">
+      <input type="number" id="l_acabamento" value="20" placeholder="Acabamento (%)">
+
+      <input type="number" id="l_mao" placeholder="Mão de obra (R$)">
+
+      <button onclick="calcularLona()">Calcular Lona</button>
     </div>
 
   </div>
 
+  <!-- DIREITA -->
   <div class="right">
 
     <div class="card resultado">
-      <h2>Total</h2>
-      <h1 id="total">R$ 0,00</h1>
+      <h2>RESULTADO</h2>
 
-      <p>Unitário: <span id="unitario">R$ 0,00</span></p>
-      <p>Área: <span id="area">0 m²</span></p>
+      <p>Adesivo:</p>
+      <h3 id="resAdesivo">R$ 0,00</h3>
+
+      <p>Lona:</p>
+      <h3 id="resLona">R$ 0,00</h3>
+
     </div>
 
   </div>
