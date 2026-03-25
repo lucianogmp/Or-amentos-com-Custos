@@ -1,63 +1,50 @@
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0b0f19;
-  color: white;
+function calcularAdesivo() {
+
+  let largura = parseFloat(document.getElementById("a_largura").value);
+  let altura = parseFloat(document.getElementById("a_altura").value);
+  let qtd = parseFloat(document.getElementById("a_qtd").value);
+
+  let valorMetro = parseFloat(document.getElementById("a_valorMetro").value);
+  let material = parseFloat(document.getElementById("a_material").value);
+
+  let arte = parseFloat(document.getElementById("a_arte").value) / 100;
+  let aplicacao = parseFloat(document.getElementById("a_aplicacao").value) / 100;
+
+  let area = largura * altura;
+  let base = area * valorMetro;
+
+  let custo = base + material;
+
+  let comArte = custo + (custo * arte);
+  let final = comArte + (comArte * aplicacao);
+
+  let total = final * qtd;
+
+  document.getElementById("resAdesivo").innerText = "R$ " + total.toFixed(2);
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-}
+function calcularLona() {
 
-.logo {
-  height: 60px;
-}
+  let largura = parseFloat(document.getElementById("l_largura").value);
+  let altura = parseFloat(document.getElementById("l_altura").value);
+  let qtd = parseFloat(document.getElementById("l_qtd").value);
 
-.container {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-}
+  let valorMetro = parseFloat(document.getElementById("l_valorMetro").value);
 
-.left, .right {
-  flex: 1;
-}
+  let arte = parseFloat(document.getElementById("l_arte").value) / 100;
+  let acabamento = parseFloat(document.getElementById("l_acabamento").value) / 100;
 
-.card {
-  background: #121826;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(0,255,255,0.05);
-}
+  let mao = parseFloat(document.getElementById("l_mao").value);
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: none;
-  background: #1a2235;
-  color: white;
-}
+  let area = largura * altura;
+  let base = area * valorMetro;
 
-button {
-  width: 100%;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(45deg, #00c2ff, #0066ff);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
+  let comArte = base + (base * arte);
+  let comAcabamento = comArte + (comArte * acabamento);
 
-.resultado {
-  text-align: center;
-}
+  let final = comAcabamento + mao;
 
-.resultado h3 {
-  color: #00e0ff;
+  let total = final * qtd;
+
+  document.getElementById("resLona").innerText = "R$ " + total.toFixed(2);
 }
