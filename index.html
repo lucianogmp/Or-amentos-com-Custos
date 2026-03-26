@@ -402,7 +402,7 @@ const v = material === 'vinil' ? 90 : 75;
 
   // NOVA REGRA
   const temArte = document.querySelector('input[name="arte"]:checked').value === 'sim';
-  const margem = temArte ? 0.2 : 0;
+  const margem = temArte ? 0 : 0.2;
 
   const area = l * a;
   const unitario = (area * v) * (1 + margem);
