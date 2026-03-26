@@ -397,7 +397,8 @@ function calcular() {
   const l = parseFloat(largura.value) / 100 || 0;
   const a = parseFloat(altura.value) / 100 || 0;
   const q = parseFloat(quantidade.value) || 1;
-  const v = parseFloat(valor.value) || 0;
+  const material = document.querySelector('input[name="material"]:checked').value;
+const v = material === 'vinil' ? 90 : 75;
 
   // NOVA REGRA
   const temArte = document.querySelector('input[name="arte"]:checked').value === 'sim';
