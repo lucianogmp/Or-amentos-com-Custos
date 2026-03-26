@@ -397,8 +397,51 @@ function calcular() {
   const l = parseFloat(largura.value) / 100 || 0;
   const a = parseFloat(altura.value) / 100 || 0;
   const q = parseFloat(quantidade.value) || 1;
+
+  // Material
   const material = document.querySelector('input[name="material"]:checked').value;
-const v = material === 'vinil' ? 90 : 75;
+  const v = material === 'vinil' ? 90 : 75;
+
+  // Tem arte
+  const temArte = document.querySelector('input[name="arte"]:checked').value === 'sim';
+
+  const area = l * a;
+
+  // Margem dinâmica
+  let margem = 0;
+  if (!temArte) { // só aplica se não tem arte
+    let basePercent = 0.2; // 20%
+    let decrementos = Math.floor((v * area) / 100); // cada R$100
+    margem = basePercent - (0.05 * decrementos); // diminui 5% por cada R$100
+    if (margem < 0.05) margem = 0.05; // mínimo 5%
+  }
+
+  const unitario = (area * v) * (1 + margem);
+  let total = unitario * q;
+
+  total = isNaN(total) ? 0 : total;
+
+  totalEl.textContent = "R$ " + total.toFixed(2).replace('.', ',');
+  unitarioEl.textContent = "R$ " + unitario.toFixed(2).replace('.', ',');
+  areaEl.textContent = area.toFixed(2).replace('.', ',') + " m²";
+
+  // Salva resultado pra envio/armazenamento
+  window.resultado = {
+    cliente: cliente.value,
+    vendedor: vendedor.value,
+    largura: parseFloat(largura.value) || 0,
+    altura: parseFloat(altura.value) || 0,
+    quantidade: q,
+    area: area,
+    unitario: unitario,
+    total: total,
+    data: new Date().toLocaleDateString('pt-BR'),
+    valorM2: v,
+    margemPercent: margem * 100,
+    temArte: temArte,
+    material: material
+  };
+}
 
   // NOVA REGRA
   const temArte = document.querySelector('input[name="arte"]:checked').value === 'sim';
