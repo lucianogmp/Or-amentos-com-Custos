@@ -408,11 +408,11 @@ function calcular() {
   const temArte = arteEl ? arteEl.value === 'sim' : false;
 
   const area = l * a;
-  let margem = 0;
+  const valorBase = area * v;
 
-  if (!temArte && area > 0) {
-    const valorBase = area * v;
-    // Cada R$100 diminui 5%, mínimo 5%
+  // Margem dinâmica
+  let margem = 0;
+  if (!temArte && valorBase > 0) {
     margem = Math.max(0.2 - 0.05 * Math.floor(valorBase / 100), 0.05);
   }
 
@@ -441,6 +441,7 @@ function calcular() {
     material: material
   };
 }
+  
 function salvar() {
   if (!window.resultado) return alert("Calcule primeiro");
   lista.push(window.resultado);
