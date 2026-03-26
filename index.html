@@ -394,7 +394,6 @@ const unitarioEl = document.getElementById("unitario");
 const areaEl = document.getElementById("area");
 
 function calcular() {
-  // pega valores do formulário
   const l = parseFloat(largura.value) / 100 || 0;
   const a = parseFloat(altura.value) / 100 || 0;
   const q = parseFloat(quantidade.value) || 1;
@@ -404,30 +403,28 @@ function calcular() {
   const material = materialEl ? materialEl.value : 'vinil';
   const v = material === 'vinil' ? 90 : 75;
 
-  // Tem arte
+  // Arte
   const arteEl = document.querySelector('input[name="arte"]:checked');
   const temArte = arteEl ? arteEl.value === 'sim' : false;
 
   const area = l * a;
-
-  // Margem dinâmica
   let margem = 0;
+
   if (!temArte && area > 0) {
-    let basePercent = 0.2; // 20%
-    let decrementos = Math.floor((v * area) / 100); // cada R$100
-    margem = basePercent - (0.05 * decrementos);
-    if (margem < 0.05) margem = 0.05; // mínimo 5%
+    const valorBase = area * v;
+    // Cada R$100 diminui 5%, mínimo 5%
+    margem = Math.max(0.2 - 0.05 * Math.floor(valorBase / 100), 0.05);
   }
 
-  const unitario = (area * v) * (1 + margem);
+  const unitario = valorBase * (1 + margem);
   const total = unitario * q;
 
-  // atualiza elementos na tela
+  // Atualiza tela
   totalEl.textContent = "R$ " + total.toFixed(2).replace('.', ',');
   unitarioEl.textContent = "R$ " + unitario.toFixed(2).replace('.', ',');
   areaEl.textContent = area.toFixed(2).replace('.', ',') + " m²";
 
-  // salva resultado para uso futuro
+  // Salva resultado
   window.resultado = {
     cliente: cliente.value || '',
     vendedor: vendedor.value || '',
@@ -444,22 +441,6 @@ function calcular() {
     material: material
   };
 }
-
-  // NOVA REGRA
-  const temArte = document.querySelector('input[name="arte"]:checked').value === 'sim';
-  const margem = temArte ? 0 : 0.2;
-
-  const area = l * a;
-  const unitario = (area * v) * (1 + margem);
-  let total = unitario * q;
-
-  total = isNaN(total) ? 0 : total;
-
-  totalEl.textContent = "R$ " + total.toFixed(2).replace('.', ',');
-  unitarioEl.textContent = "R$ " + unitario.toFixed(2).replace('.', ',');
-  areaEl.textContent = area.toFixed(2).replace('.', ',') + " m²";
-}
-
 function salvar() {
   if (!window.resultado) return alert("Calcule primeiro");
   lista.push(window.resultado);
