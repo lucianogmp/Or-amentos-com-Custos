@@ -114,25 +114,37 @@
   </header>
 
   <!-- Tabs Navigation -->
-  <nav class="flex border-b border-slate-200 dark:border-[#2a3040] mb-5">
-    <button
-      id="tab-form"
-      onclick="switchTab('form')"
-      class="flex-1 sm:flex-none px-5 py-3 text-sm font-semibold border-b-2 transition-colors duration-200
-             border-brand-500 text-brand-600 dark:text-brand-400"
-    >
-      Novo Orçamento
-    </button>
-    <button
-      id="tab-history"
-      onclick="switchTab('history')"
-      class="flex-1 sm:flex-none px-5 py-3 text-sm font-semibold border-b-2 transition-colors duration-200
-             border-transparent text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300"
-    >
-      Histórico
-      <span id="tab-badge" class="ml-1.5 text-[11px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full px-1.5 py-0.5"></span>
-    </button>
-  </nav>
+ <nav class="flex border-b border-slate-200 dark:border-[#2a3040] mb-5">
+
+  <button
+    id="tab-form"
+    onclick="switchTab('form')"
+    class="flex-1 sm:flex-none px-5 py-3 text-sm font-semibold border-b-2
+           border-brand-500 text-brand-600 dark:text-brand-400">
+    CÁLCULO DE ADESIVO
+  </button>
+
+  <button
+    id="tab-folha"
+    onclick="switchTab('folha')"
+    class="flex-1 sm:flex-none px-5 py-3 text-sm font-semibold border-b-2
+           border-transparent text-slate-400 dark:text-slate-500 hover:text-slate-600">
+    CÁLCULO DE FOLHA
+  </button>
+
+  <button
+    id="tab-history"
+    onclick="switchTab('history')"
+    class="flex-1 sm:flex-none px-5 py-3 text-sm font-semibold border-b-2
+           border-transparent text-slate-400 dark:text-slate-500 hover:text-slate-600">
+    Histórico
+    <span id="tab-badge"
+      class="ml-1.5 text-[11px] font-bold bg-slate-200 dark:bg-slate-700
+             text-slate-500 dark:text-slate-400 rounded-full px-1.5 py-0.5">
+    </span>
+  </button>
+
+</nav>
 
   <!-- Panel: Novo Orçamento -->
   <div id="panel-form">
@@ -339,6 +351,45 @@
 
   <!-- Panel: Histórico -->
   <div id="panel-history" class="hidden">
+    <!-- Panel: Cálculo de Folha -->
+<div id="panel-folha" class="hidden">
+  <section class="bg-white dark:bg-[#1a1f2e] rounded-2xl border border-slate-200 dark:border-[#2a3040] p-5 space-y-4 fade-in">
+
+    <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+      Cálculo de Aproveitamento de Folha
+    </h3>
+
+    <div class="grid grid-cols-2 gap-4">
+      <input id="folhaLargura" type="number" placeholder="Largura folha (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+      <input id="folhaAltura" type="number" placeholder="Altura folha (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+
+      <input id="adesivoLargura" type="number" placeholder="Largura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+      <input id="adesivoAltura" type="number" placeholder="Altura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+
+      <input id="espacamento" type="number" placeholder="Espaçamento (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a] col-span-2">
+    </div>
+
+    <button onclick="calcularFolha()" class="w-full bg-brand-600 text-white py-3 rounded-xl">
+      Calcular
+    </button>
+
+    <div class="grid grid-cols-3 gap-3 text-center">
+      <div>
+        <p class="text-xs text-slate-400">Na largura</p>
+        <p id="resLargura" class="font-bold text-lg">0</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400">Na altura</p>
+        <p id="resAltura" class="font-bold text-lg">0</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400">Total</p>
+        <p id="resTotal" class="font-bold text-lg text-brand-600">0</p>
+      </div>
+    </div>
+
+  </section>
+</div>
     <section class="bg-white dark:bg-[#1a1f2e] rounded-2xl border border-slate-200 dark:border-[#2a3040] p-5 space-y-3 fade-in">
       <div class="flex items-center justify-between">
         <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
@@ -371,10 +422,13 @@ function toggleTheme() {
 function switchTab(tab) {
   const panelForm = document.getElementById('panel-form');
   const panelHistory = document.getElementById('panel-history');
+  const panelFolha = document.getElementById('panel-folha');
+
   const tabForm = document.getElementById('tab-form');
   const tabHistory = document.getElementById('tab-history');
+  const tabFolha = document.getElementById('tab-folha');
 
-  const active = ['border-brand-500', 'text-brand-600', 'dark:text-brand-400'];
+    const active = ['border-brand-500', 'text-brand-600', 'dark:text-brand-400'];
   const inactive = ['border-transparent', 'text-slate-400', 'dark:text-slate-500', 'hover:text-slate-600', 'dark:hover:text-slate-300'];
 
   panelForm.classList.toggle('hidden', tab !== 'form');
@@ -775,6 +829,21 @@ function gerarPDF() {
 }
 
 render();
+  function calcularFolha() {
+  const folhaL = parseFloat(document.getElementById("folhaLargura").value) || 0;
+  const folhaA = parseFloat(document.getElementById("folhaAltura").value) || 0;
+  const adesivoL = parseFloat(document.getElementById("adesivoLargura").value) || 0;
+  const adesivoA = parseFloat(document.getElementById("adesivoAltura").value) || 0;
+  const esp = parseFloat(document.getElementById("espacamento").value) || 0;
+
+  const naLargura = Math.floor((folhaL + esp) / (adesivoL + esp));
+  const naAltura = Math.floor((folhaA + esp) / (adesivoA + esp));
+  const total = naLargura * naAltura;
+
+  document.getElementById("resLargura").textContent = naLargura;
+  document.getElementById("resAltura").textContent = naAltura;
+  document.getElementById("resTotal").textContent = total;
+}
 </script>
 
 </body>
