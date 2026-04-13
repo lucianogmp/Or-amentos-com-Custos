@@ -433,14 +433,19 @@ function switchTab(tab) {
   const tabHistory = document.getElementById('tab-history');
   const tabFolha = document.getElementById('tab-folha');
 
-    const active = ['border-brand-500', 'text-brand-600', 'dark:text-brand-400'];
+  const active = ['border-brand-500', 'text-brand-600', 'dark:text-brand-400'];
   const inactive = ['border-transparent', 'text-slate-400', 'dark:text-slate-500', 'hover:text-slate-600', 'dark:hover:text-slate-300'];
 
   panelForm.classList.toggle('hidden', tab !== 'form');
   panelHistory.classList.toggle('hidden', tab !== 'history');
+  panelFolha.classList.toggle('hidden', tab !== 'folha');
 
-  [tabForm, tabHistory].forEach(btn => {
-    const isActive = (btn === tabForm && tab === 'form') || (btn === tabHistory && tab === 'history');
+  [tabForm, tabHistory, tabFolha].forEach(btn => {
+    const isActive =
+      (btn === tabForm && tab === 'form') ||
+      (btn === tabHistory && tab === 'history') ||
+      (btn === tabFolha && tab === 'folha');
+
     active.forEach(c => btn.classList.toggle(c, isActive));
     inactive.forEach(c => btn.classList.toggle(c, !isActive));
   });
