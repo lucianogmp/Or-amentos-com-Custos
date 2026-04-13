@@ -371,7 +371,7 @@
       <input id="adesivoLargura" type="number" placeholder="Largura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
       <input id="adesivoAltura" type="number" placeholder="Altura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
 
-      <input id="espacamento" type="number" placeholder="Espaçamento (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a] col-span-2">
+      <input id="espacamento" type="hidden" value="0.03">
     </div>
 
     <button onclick="calcularFolha()" class="w-full bg-brand-600 text-white py-3 rounded-xl">
@@ -398,12 +398,6 @@
     <section class="bg-white dark:bg-[#1a1f2e] rounded-2xl border border-slate-200 dark:border-[#2a3040] p-5 space-y-3 fade-in">
       <div class="flex items-center justify-between">
         <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
-          Histórico de Orçamentos
-        </h3>
-        <span id="lista-count" class="text-[11px] font-medium text-slate-400 dark:text-slate-500"></span>
-      </div>
-      <div id="lista" class="space-y-2 text-sm"></div>
-    </section>
   </div>
 
   <!-- Footer -->
