@@ -365,13 +365,42 @@
     </h3>
 
     <div class="grid grid-cols-2 gap-4">
-      <input id="folhaLargura" type="number" placeholder="Largura folha (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
-      <input id="folhaAltura" type="number" placeholder="Altura folha (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+      <div class="space-y-2">
+  <label class="text-sm text-slate-400">Tamanho da folha</label>
+
+  <div class="flex gap-3">
+
+    <label class="flex-1 cursor-pointer">
+      <input type="radio" name="folha" value="a4" class="hidden peer" checked>
+      <div class="text-center py-3 rounded-lg border border-slate-300
+                  peer-checked:bg-blue-500 peer-checked:text-white">
+        A4
+      </div>
+    </label>
+
+    <label class="flex-1 cursor-pointer">
+      <input type="radio" name="folha" value="a3" class="hidden peer">
+      <div class="text-center py-3 rounded-lg border border-slate-300
+                  peer-checked:bg-blue-500 peer-checked:text-white">
+        A3
+      </div>
+    </label>
+
+    <label class="flex-1 cursor-pointer">
+      <input type="radio" name="folha" value="sra3" class="hidden peer">
+      <div class="text-center py-3 rounded-lg border border-slate-300
+                  peer-checked:bg-blue-500 peer-checked:text-white">
+        SRA3
+      </div>
+    </label>
+
+  </div>
+</div>
 
       <input id="adesivoLargura" type="number" placeholder="Largura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
       <input id="adesivoAltura" type="number" placeholder="Altura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
 
-      <input id="espacamento" type="hidden" value="0.03">
+     
     </div>
 
     <button onclick="calcularFolha()" class="w-full bg-brand-600 text-white py-3 rounded-xl">
@@ -834,11 +863,43 @@ function gerarPDF() {
 
 render();
   function calcularFolha() {
-  const folhaL = parseFloat(document.getElementById("folhaLargura").value) || 0;
-  const folhaA = parseFloat(document.getElementById("folhaAltura").value) || 0;
+
+  const tipo = document.querySelector('input[name="folha"]:checked').value;
+
+  let folhaL = 0;
+  let folhaA = 0;
+
+  if (tipo === 'a4') {
+    folhaL = 20;   // 21 - 0.5 - 0.5
+    folhaA = 28.7; // 29.7 - 0.5 - 0.5
+  }
+
+  if (tipo === 'a3') {
+    folhaL = 28.7; // 29.7 - 0.5 - 0.5
+    folhaA = 41;   // 42 - 0.5 - 0.5
+  }
+
+  if (tipo === 'sra3') {
+    folhaL = 31;
+    folhaA = 44;
+  }
+
   const adesivoL = parseFloat(document.getElementById("adesivoLargura").value) || 0;
   const adesivoA = parseFloat(document.getElementById("adesivoAltura").value) || 0;
-  const esp = parseFloat(document.getElementById("espacamento").value) || 0;
+
+  const esp = 0.03; // fixo
+
+  const naLargura = Math.floor((folhaL + esp) / (adesivoL + esp));
+  const naAltura = Math.floor((folhaA + esp) / (adesivoA + esp));
+  const total = naLargura * naAltura;
+
+  document.getElementById("resLargura").textContent = naLargura;
+  document.getElementById("resAltura").textContent = naAltura;
+  document.getElementById("resTotal").textContent = total;
+}
+  const adesivoL = parseFloat(document.getElementById("adesivoLargura").value) || 0;
+  const adesivoA = parseFloat(document.getElementById("adesivoAltura").value) || 0;
+  const esp = 0.03;
 
   const naLargura = Math.floor((folhaL + esp) / (adesivoL + esp));
   const naAltura = Math.floor((folhaA + esp) / (adesivoA + esp));
