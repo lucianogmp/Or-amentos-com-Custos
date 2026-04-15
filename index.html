@@ -400,6 +400,7 @@
     </div>
 
     <button onclick="calcularFolha()" class="w-full bg-brand-600 text-white py-3 rounded-xl">
+      <input id="quantidadeFolha" type="number" placeholder="Quantidade total" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a] col-span-2">
       Calcular
     </button>
 
@@ -415,6 +416,10 @@
       <div>
         <p class="text-xs text-slate-400">Total</p>
         <p id="resTotal" class="font-bold text-lg text-brand-600">0</p>
+        <div>
+  <p class="text-xs text-slate-400">Folhas necessárias</p>
+  <p id="resFolhas" class="font-bold text-lg text-green-500">0</p>
+</div>
       </div>
     </div>
 
@@ -863,13 +868,13 @@ render();
   let folhaA = 0;
 
   if (tipo === 'a4') {
-    folhaL = 20;   // 21 - 0.5 - 0.5
-    folhaA = 28.7; // 29.7 - 0.5 - 0.5
+    folhaL = 20;
+    folhaA = 28.7;
   }
 
   if (tipo === 'a3') {
-    folhaL = 28.7; // 29.7 - 0.5 - 0.5
-    folhaA = 41;   // 42 - 0.5 - 0.5
+    folhaL = 28.7;
+    folhaA = 41;
   }
 
   if (tipo === 'sra3') {
@@ -879,29 +884,25 @@ render();
 
   const adesivoL = parseFloat(document.getElementById("adesivoLargura").value) || 0;
   const adesivoA = parseFloat(document.getElementById("adesivoAltura").value) || 0;
+  const quantidade = parseFloat(document.getElementById("quantidadeFolha").value) || 0;
 
-  const esp = 0.03; // fixo
-
-  const naLargura = Math.floor((folhaL + esp) / (adesivoL + esp));
-  const naAltura = Math.floor((folhaA + esp) / (adesivoA + esp));
-  const total = naLargura * naAltura;
-
-  document.getElementById("resLargura").textContent = naLargura;
-  document.getElementById("resAltura").textContent = naAltura;
-  document.getElementById("resTotal").textContent = total;
-}
-  const adesivoL = parseFloat(document.getElementById("adesivoLargura").value) || 0;
-  const adesivoA = parseFloat(document.getElementById("adesivoAltura").value) || 0;
   const esp = 0.03;
 
   const naLargura = Math.floor((folhaL + esp) / (adesivoL + esp));
   const naAltura = Math.floor((folhaA + esp) / (adesivoA + esp));
   const total = naLargura * naAltura;
 
+  let folhas = 0;
+  if (total > 0) {
+    folhas = Math.ceil(quantidade / total);
+  }
+
   document.getElementById("resLargura").textContent = naLargura;
   document.getElementById("resAltura").textContent = naAltura;
   document.getElementById("resTotal").textContent = total;
+  document.getElementById("resFolhas").textContent = folhas;
 }
+  
 </script>
 
 </body>
