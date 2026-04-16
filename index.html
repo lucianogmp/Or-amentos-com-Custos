@@ -360,37 +360,57 @@
       Cálculo de Aproveitamento de Folha
     </h3>
 
-    <div class="grid grid-cols-2 gap-4">
-      <div class="space-y-2">
-  <label class="text-sm text-slate-400">Tamanho da folha</label>
+   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-  <div class="flex gap-3">
+  <!-- TIPO DE FOLHA -->
+  <div class="space-y-2 col-span-3">
+    <label class="text-sm text-slate-400">Tamanho da folha</label>
 
-    <label class="flex-1 cursor-pointer">
-      <input type="radio" name="folha" value="a4" class="hidden peer" checked>
-      <div class="text-center py-3 rounded-lg border border-slate-300
-                  peer-checked:bg-blue-500 peer-checked:text-white">
-        A4
-      </div>
-    </label>
+    <div class="flex gap-3">
+      <label class="flex-1 cursor-pointer">
+        <input type="radio" name="folha" value="a4" class="hidden peer" checked>
+        <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
+          A4
+        </div>
+      </label>
 
-    <label class="flex-1 cursor-pointer">
-      <input type="radio" name="folha" value="a3" class="hidden peer">
-      <div class="text-center py-3 rounded-lg border border-slate-300
-                  peer-checked:bg-blue-500 peer-checked:text-white">
-        A3
-      </div>
-    </label>
+      <label class="flex-1 cursor-pointer">
+        <input type="radio" name="folha" value="a3" class="hidden peer">
+        <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
+          A3
+        </div>
+      </label>
 
-    <label class="flex-1 cursor-pointer">
-      <input type="radio" name="folha" value="sra3" class="hidden peer">
-      <div class="text-center py-3 rounded-lg border border-slate-300
-                  peer-checked:bg-blue-500 peer-checked:text-white">
-        SRA3
-      </div>
-    </label>
-
+      <label class="flex-1 cursor-pointer">
+        <input type="radio" name="folha" value="sra3" class="hidden peer">
+        <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
+          SRA3
+        </div>
+      </label>
+    </div>
   </div>
+
+  <!-- LARGURA -->
+  <div>
+    <label class="text-xs text-slate-400">Largura adesivo</label>
+    <input id="adesivoLargura" type="number"
+      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  </div>
+
+  <!-- ALTURA -->
+  <div>
+    <label class="text-xs text-slate-400">Altura adesivo</label>
+    <input id="adesivoAltura" type="number"
+      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  </div>
+
+  <!-- QUANTIDADE -->
+  <div>
+    <label class="text-xs text-slate-400">Quantidade</label>
+    <input id="quantidadeFolha" type="number"
+      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  </div>
+
 </div>
 
       <input id="adesivoLargura" type="number" placeholder="Largura adesivo (cm)" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
@@ -399,28 +419,34 @@
      
     </div>
 
-    <button onclick="calcularFolha()" class="w-full bg-brand-600 text-white py-3 rounded-xl">
-      <input id="quantidadeFolha" type="number" placeholder="Quantidade total" class="p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a] col-span-2">
-      Calcular
-    </button>
+    <button onclick="calcularFolha()"
+  class="w-full bg-brand-600 text-white py-3 rounded-xl mt-4">
+  Calcular
+</button>
 
-    <div class="grid grid-cols-3 gap-3 text-center">
-      <div>
-        <p class="text-xs text-slate-400">Na largura</p>
-        <p id="resLargura" class="font-bold text-lg">0</p>
-      </div>
-      <div>
-        <p class="text-xs text-slate-400">Na altura</p>
-        <p id="resAltura" class="font-bold text-lg">0</p>
-      </div>
-      <div>
-        <p class="text-xs text-slate-400">Total</p>
-        <p id="resTotal" class="font-bold text-lg text-brand-600">0</p>
-        <div>
-  <p class="text-xs text-slate-400">Folhas necessárias</p>
-  <p id="resFolhas" class="font-bold text-lg text-green-500">0</p>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mt-4">
+
+  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+    <p class="text-xs text-slate-400">Na largura</p>
+    <p id="resLargura" class="font-bold text-lg">0</p>
+  </div>
+
+  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+    <p class="text-xs text-slate-400">Na altura</p>
+    <p id="resAltura" class="font-bold text-lg">0</p>
+  </div>
+
+  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+    <p class="text-xs text-slate-400">Total por folha</p>
+    <p id="resTotal" class="font-bold text-lg text-brand-600">0</p>
+  </div>
+
+  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+    <p class="text-xs text-slate-400">Folhas necessárias</p>
+    <p id="resFolhas" class="font-bold text-lg text-green-500">0</p>
+  </div>
+
 </div>
-      </div>
     </div>
 
   </section>
@@ -902,6 +928,14 @@ render();
   document.getElementById("resTotal").textContent = total;
   document.getElementById("resFolhas").textContent = folhas;
 }
+  const quantidade = parseFloat(document.getElementById("quantidadeFolha").value) || 0;
+
+let folhas = 0;
+if (total > 0) {
+  folhas = Math.ceil(quantidade / total);
+}
+
+document.getElementById("resFolhas").textContent = folhas;
   
 </script>
 
