@@ -360,106 +360,89 @@
       Cálculo de Aproveitamento de Folha
     </h3>
 
-   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <!-- TIPO DE FOLHA -->
+    <div class="space-y-2">
+      <label class="text-sm text-slate-400">Tamanho da folha</label>
 
-  <!-- TIPO DE FOLHA -->
-  <div class="space-y-2 col-span-3">
-    <label class="text-sm text-slate-400">Tamanho da folha</label>
+      <div class="flex gap-3">
+        <label class="flex-1 cursor-pointer">
+          <input type="radio" name="folha" value="a4" class="hidden peer" checked>
+          <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
+            A4
+          </div>
+        </label>
 
-    <div class="flex gap-3">
-      <label class="flex-1 cursor-pointer">
-        <input type="radio" name="folha" value="a4" class="hidden peer" checked>
-        <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
-          A4
-        </div>
-      </label>
+        <label class="flex-1 cursor-pointer">
+          <input type="radio" name="folha" value="a3" class="hidden peer">
+          <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
+            A3
+          </div>
+        </label>
 
-      <label class="flex-1 cursor-pointer">
-        <input type="radio" name="folha" value="a3" class="hidden peer">
-        <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
-          A3
-        </div>
-      </label>
-
-      <label class="flex-1 cursor-pointer">
-        <input type="radio" name="folha" value="sra3" class="hidden peer">
-        <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
-          SRA3
-        </div>
-      </label>
+        <label class="flex-1 cursor-pointer">
+          <input type="radio" name="folha" value="sra3" class="hidden peer">
+          <div class="text-center py-3 rounded-lg border border-slate-300 peer-checked:bg-blue-500 peer-checked:text-white">
+            SRA3
+          </div>
+        </label>
+      </div>
     </div>
-  </div>
 
-<!-- GRID DOS INPUTS -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <!-- INPUTS -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-  <!-- LARGURA -->
-  <div class="space-y-1">
-    <label class="text-sm font-medium text-slate-500">Largura</label>
-    <input id="adesivoLargura" type="number" placeholder="cm"
-      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a]
-             border border-slate-200 dark:border-[#2a3040]
-             focus:outline-none focus:ring-2 focus:ring-brand-500/30
-             focus:border-brand-500 transition-all">
-  </div>
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-slate-500">Largura</label>
+        <input id="adesivoLargura" type="number"
+          class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a] border border-slate-200 dark:border-[#2a3040]">
+      </div>
 
-  <!-- ALTURA -->
-  <div class="space-y-1">
-    <label class="text-sm font-medium text-slate-500">Altura</label>
-    <input id="adesivoAltura" type="number" placeholder="cm"
-      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a]
-             border border-slate-200 dark:border-[#2a3040]
-             focus:outline-none focus:ring-2 focus:ring-brand-500/30
-             focus:border-brand-500 transition-all">
-  </div>
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-slate-500">Altura</label>
+        <input id="adesivoAltura" type="number"
+          class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a] border border-slate-200 dark:border-[#2a3040]">
+      </div>
 
-  <!-- QUANTIDADE -->
-  <div class="space-y-1">
-    <label class="text-sm font-medium text-slate-500">Quantidade</label>
-    <input id="quantidadeFolha" type="number" placeholder="0"
-      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a]
-             border border-slate-200 dark:border-[#2a3040]
-             focus:outline-none focus:ring-2 focus:ring-brand-500/30
-             focus:border-brand-500 transition-all">
-  </div>
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-slate-500">Quantidade</label>
+        <input id="quantidadeFolha" type="number"
+          class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a] border border-slate-200 dark:border-[#2a3040]">
+      </div>
 
-</div>
+    </div>
 
-<!-- BOTÃO GRANDE -->
-<button onclick="calcularFolha()"
-  class="w-full mt-5 py-3 rounded-xl font-semibold
-         bg-brand-600 text-white
-         hover:bg-brand-700
-         transition-all duration-200 active:scale-[0.98]">
-  Calcular
-</button>
-  </div>
+    <!-- BOTÃO -->
+    <button onclick="calcularFolha()"
+      class="w-full mt-4 py-3 rounded-xl font-semibold bg-brand-600 text-white">
+      Calcular
+    </button>
 
-</div>
+    <!-- RESULTADOS -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
 
-<!-- RESULTADOS -->
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mt-4">
+      <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+        <p class="text-xs text-slate-400">Na largura</p>
+        <p id="resLargura" class="font-bold text-lg">0</p>
+      </div>
 
-  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
-    <p class="text-xs text-slate-400">Na largura</p>
-    <p id="resLargura" class="font-bold text-lg">0</p>
-  </div>
+      <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+        <p class="text-xs text-slate-400">Na altura</p>
+        <p id="resAltura" class="font-bold text-lg">0</p>
+      </div>
 
-  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
-    <p class="text-xs text-slate-400">Na altura</p>
-    <p id="resAltura" class="font-bold text-lg">0</p>
-  </div>
+      <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+        <p class="text-xs text-slate-400">Total por folha</p>
+        <p id="resTotal" class="font-bold text-lg text-brand-600">0</p>
+      </div>
 
-  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
-    <p class="text-xs text-slate-400">Total por folha</p>
-    <p id="resTotal" class="font-bold text-lg text-brand-600">0</p>
-  </div>
+      <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
+        <p class="text-xs text-slate-400">Folhas necessárias</p>
+        <p id="resFolhas" class="font-bold text-lg text-green-500">0</p>
+      </div>
 
-  <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
-    <p class="text-xs text-slate-400">Folhas necessárias</p>
-    <p id="resFolhas" class="font-bold text-lg text-green-500">0</p>
-  </div>
+    </div>
 
+  </section>
 </div>
 
 <script>
