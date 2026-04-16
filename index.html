@@ -390,36 +390,49 @@
     </div>
   </div>
 
- <!-- CAMPOS -->
-<div class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+<!-- GRID DOS INPUTS -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
   <!-- LARGURA -->
-  <div>
-    <label class="text-xs text-slate-400">Largura</label>
-    <input id="adesivoLargura" type="number"
-      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  <div class="space-y-1">
+    <label class="text-sm font-medium text-slate-500">Largura</label>
+    <input id="adesivoLargura" type="number" placeholder="cm"
+      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a]
+             border border-slate-200 dark:border-[#2a3040]
+             focus:outline-none focus:ring-2 focus:ring-brand-500/30
+             focus:border-brand-500 transition-all">
   </div>
 
   <!-- ALTURA -->
-  <div>
-    <label class="text-xs text-slate-400">Altura</label>
-    <input id="adesivoAltura" type="number"
-      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  <div class="space-y-1">
+    <label class="text-sm font-medium text-slate-500">Altura</label>
+    <input id="adesivoAltura" type="number" placeholder="cm"
+      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a]
+             border border-slate-200 dark:border-[#2a3040]
+             focus:outline-none focus:ring-2 focus:ring-brand-500/30
+             focus:border-brand-500 transition-all">
   </div>
 
   <!-- QUANTIDADE -->
-  <div>
-    <label class="text-xs text-slate-400">Quantidade</label>
-    <input id="quantidadeFolha" type="number"
-      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  <div class="space-y-1">
+    <label class="text-sm font-medium text-slate-500">Quantidade</label>
+    <input id="quantidadeFolha" type="number" placeholder="0"
+      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-[#232a3a]
+             border border-slate-200 dark:border-[#2a3040]
+             focus:outline-none focus:ring-2 focus:ring-brand-500/30
+             focus:border-brand-500 transition-all">
   </div>
 
-  <!-- BOTÃO -->
-  <div>
-    <button onclick="calcularFolha()"
-      class="w-full bg-brand-600 text-white py-3 rounded-xl">
-      Calcular
-    </button>
+</div>
+
+<!-- BOTÃO GRANDE -->
+<button onclick="calcularFolha()"
+  class="w-full mt-5 py-3 rounded-xl font-semibold
+         bg-brand-600 text-white
+         hover:bg-brand-700
+         transition-all duration-200 active:scale-[0.98]">
+  Calcular
+</button>
   </div>
 
 </div>
