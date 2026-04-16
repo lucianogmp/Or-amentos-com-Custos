@@ -390,36 +390,63 @@
     </div>
   </div>
 
+ <!-- CAMPOS -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+
   <!-- LARGURA -->
-  <div>
+  <div class="col-span-1">
     <label class="text-xs text-slate-400">Largura adesivo</label>
     <input id="adesivoLargura" type="number"
       class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
   </div>
 
   <!-- ALTURA -->
-  <div>
+  <div class="col-span-1">
     <label class="text-xs text-slate-400">Altura adesivo</label>
     <input id="adesivoAltura" type="number"
       class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
   </div>
 
   <!-- QUANTIDADE -->
-  <div>
+  <div class="col-span-2 sm:col-span-1">
     <label class="text-xs text-slate-400">Quantidade</label>
     <input id="quantidadeFolha" type="number"
       class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
   </div>
+
 </div>
      
-    </div>
+   <!-- GRID DOS INPUTS -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
 
-    <button onclick="calcularFolha()"
+  <div>
+    <label class="text-xs text-slate-400">Largura adesivo</label>
+    <input id="adesivoLargura" type="number"
+      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  </div>
+
+  <div>
+    <label class="text-xs text-slate-400">Altura adesivo</label>
+    <input id="adesivoAltura" type="number"
+      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  </div>
+
+  <div class="col-span-2 sm:col-span-1">
+    <label class="text-xs text-slate-400">Quantidade</label>
+    <input id="quantidadeFolha" type="number"
+      class="w-full p-3 rounded-lg bg-slate-100 dark:bg-[#232a3a]">
+  </div>
+
+</div>
+
+<!-- BOTÃO -->
+<button onclick="calcularFolha()"
   class="w-full bg-brand-600 text-white py-3 rounded-xl mt-4">
   Calcular
 </button>
 
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mt-4">
+<!-- RESULTADOS -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mt-4">
 
   <div class="bg-slate-100 dark:bg-[#232a3a] p-3 rounded-xl">
     <p class="text-xs text-slate-400">Na largura</p>
@@ -440,18 +467,6 @@
     <p class="text-xs text-slate-400">Folhas necessárias</p>
     <p id="resFolhas" class="font-bold text-lg text-green-500">0</p>
   </div>
-
-</div>
-    </div>
-
-  </section>
-</div>
-    <section class="bg-white dark:bg-[#1a1f2e] rounded-2xl border border-slate-200 dark:border-[#2a3040] p-5 space-y-3 fade-in">
-      <div class="flex items-center justify-between">
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
-  </div>
-
- 
 
 </div>
 
@@ -909,9 +924,30 @@ render();
 
   const esp = 0.03;
 
-  const naLargura = Math.floor((folhaL + esp) / (adesivoL + esp));
-  const naAltura = Math.floor((folhaA + esp) / (adesivoA + esp));
-  const total = naLargura * naAltura;
+  // 🔵 NORMAL
+  const normalL = Math.floor((folhaL + esp) / (adesivoL + esp));
+  const normalA = Math.floor((folhaA + esp) / (adesivoA + esp));
+  const totalNormal = normalL * normalA;
+
+  // 🟢 ROTACIONADO (troca largura com altura)
+  const rotL = Math.floor((folhaL + esp) / (adesivoA + esp));
+  const rotA = Math.floor((folhaA + esp) / (adesivoL + esp));
+  const totalRotacionado = rotL * rotA;
+
+  // 🔥 ESCOLHE O MELHOR
+  let naLargura, naAltura, total, rotacionado;
+
+  if (totalRotacionado > totalNormal) {
+    naLargura = rotL;
+    naAltura = rotA;
+    total = totalRotacionado;
+    rotacionado = true;
+  } else {
+    naLargura = normalL;
+    naAltura = normalA;
+    total = totalNormal;
+    rotacionado = false;
+  }
 
   let folhas = 0;
   if (total > 0) {
@@ -922,15 +958,10 @@ render();
   document.getElementById("resAltura").textContent = naAltura;
   document.getElementById("resTotal").textContent = total;
   document.getElementById("resFolhas").textContent = folhas;
-}
-  const quantidade = parseFloat(document.getElementById("quantidadeFolha").value) || 0;
 
-let folhas = 0;
-if (total > 0) {
-  folhas = Math.ceil(quantidade / total);
+  // 🧠 EXTRA (opcional - mostra se rotacionou)
+  console.log(rotacionado ? "Melhor com rotação" : "Melhor sem rotação");
 }
-
-document.getElementById("resFolhas").textContent = folhas;
   
 </script>
 
